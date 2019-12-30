@@ -1,0 +1,18 @@
+import paramiko
+
+
+def myssh(myip,com):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(hostname=myip, port=22, username='root', password='xxxxxx')
+    stdin, stdout, stderr = ssh.exec_command(com)
+    result = stdout.read()
+    print(result)
+    ssh.close()
+
+#com = 'systemctl status ntpd'
+com = 'ps -ef|grep zookeeper |grep -v grep'
+with open('/root/fang/ip.txt') as fss:
+    for i in fss.readlines():
+        print(i)
+        myssh(i,com)
