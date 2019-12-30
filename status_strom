@@ -1,0 +1,42 @@
+#!/usr/bin/python
+# coding=utf-8
+import requests
+import json
+import os,linecache
+import paramiko
+import time
+
+def mydingding(msg):
+    data = {
+        "msgtype": "text",
+        "text": {"content": msg}}
+    requrl = 'https://oapi.dingtalk.com/robot/send?access_token=xxxxxx'
+    print(requrl)
+    HEADERS = {"Content-Type": "application/json ;charset=utf-8"}
+    request = requests.post(url=requrl, data=json.dumps(data), headers=HEADERS)
+    print(request.text)
+
+def myssh(myip,com):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(hostname=myip, port=22, username='fanghuaiyu', password='xxxxxx')
+    stdin, stdout, stderr = ssh.exec_command(com)
+    result = stdout.read() 
+    str1 = str(myip) + ": " + str(result.split())
+    print(str1)
+    
+    ssh.close()
+    return str1
+
+mydate = time.asctime( time.localtime(time.time()) )
+
+count=0
+com = 'ps -ef|grep supervisor.Supervisor|grep -v grep'
+with open('/home/fanghuaiyu/fang/storm/ip.txt') as fss:
+    for i in fss.read().splitlines():
+        str2 = myssh(i,com)
+        if "org.apache.storm.daemon.supervisor.Supervisor" in str2:
+            count=count+1
+    msg = str(mydate) + ": Storm巡检:[ALL Active Supervisor num]: " + str(count)
+    print(msg)
+    mydingding(msg)
