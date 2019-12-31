@@ -1,0 +1,23 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import pyhs2
+
+with pyhs2.connect(host='192.168.151.168',
+                   port=10000,
+                   authMechanism="PLAIN",
+                   user='root',
+                   password='password',
+                   database='fss') as conn:
+    with conn.cursor() as cur:
+        #print cur.getDatabases()
+        #cur.execute("show tables")
+        # print cur.getSchema()
+
+        cur.execute("select * from fss ")
+        #cur.execute("insert into fss values (2,'deh') ")
+
+        print "-" * 100
+
+        for i in cur.fetch():
+            print i
