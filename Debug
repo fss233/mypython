@@ -1,0 +1,11 @@
+[root@cdh03 debug]# python test.py 
+{'args': (1, 2)}
+3
+[root@cdh03 debug]# 
+[root@cdh03 debug]# cat test.py 
+def func(*args):
+    print(vars())
+    fss = args[0]+args[1]
+    print(fss)
+
+func(1,2)
