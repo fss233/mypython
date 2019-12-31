@@ -1,0 +1,12 @@
+import json
+import time
+import os
+
+#username = input("Input you name :")
+#print(username)
+#print(time.asctime(time.localtime(time.time())))
+
+print("-" * 100 )
+fss = os.popen('hive -e "show databases ;"')
+print(fss.read())
+
