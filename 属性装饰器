@@ -1,0 +1,33 @@
+class Student(object):
+
+    def __init__(self,name,score,sex):
+        self.__name = name
+        self.__score = score
+        self.__sex = sex
+
+    # def get_score(self):
+    #
+    #     return self.__score
+    #
+    # def set_score(self,val):
+    #     self.__score = val
+
+    @property
+    def score(self):
+        # 访问限制
+        return self.__score
+
+    @score.setter
+    def score(self,val):
+        # 限制
+        self.__score = val
+
+yuan = Student('yuan',18,'male')
+
+# print(yuan.get_score())
+# yuan.set_score(12)
+
+
+print(yuan.score)
+yuan.score = 12
+print(yuan.score)
