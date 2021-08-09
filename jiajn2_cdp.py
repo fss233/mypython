@@ -23,6 +23,7 @@ def main(cdp):
         fout.write(render_content)
 
 #file to dict
+#api.txt read from mysql ?
 input_file = "api.txt"
 """ #api.txt
 name|1
@@ -47,4 +48,3 @@ print(dict_cdp)
 if __name__ == '__main__':
     cdp=Cdp(**dict_cdp)
     main(cdp)
-
