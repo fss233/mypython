@@ -37,6 +37,8 @@ def myssh(ip):
     ssh.close()
 
 l=['10.60.100.3','10.60.100.7','10.60.100.9','10.60.100.13']
+
+#bing fa ?
 for i in l:
     print("##" + i)
     myssh(i)
