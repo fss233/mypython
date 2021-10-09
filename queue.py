@@ -48,7 +48,7 @@ def put_to_prometheus(home_dir):
 
 #vars
 home_dir = "/data7/script/wg/queue/"
-yarn_addr = "10.120.7.210"
+yarn_addr = "10.120.xx.xx"
 
 #main
 print(time.asctime(time.localtime(time.time())))
